@@ -12,7 +12,7 @@ data.head()
 data.info()
 
 #Plotando os dados livremente
-ax = sns.scatterplot(X="Population", y="Profit", data=data)
+ax = sns.scatterplot(x="Population", y="Profit", data=data)
 ax.set_title("Profit in $10000 vs City Population in 10000")
 plt.show()
 
@@ -62,3 +62,28 @@ ax.view_init(30, 330)
 plt.show()
 
 #Plotando a Convergência 
+plt.plot(costs)
+plt.xlabel("Iterations")
+plt.ylabel("$J(\Theta)$")
+plt.title("Values of the Cost Function over iterations of Gradient Descent")
+plt.show()
+
+#Ajuste da regressão linear
+theta = np.squeeze(theta)
+sns.scatterplot(x="Population", y="Profit", data=data)
+x_value = [x for x in range(5, 25)]
+y_value = [(x * theta[1] + theta[0]) for x in x_value]
+plt.plot(x_value, y_value, 'r')
+plt.xlabel("Population in 10000s")
+plt.ylabel("Profit in $10,000s")
+plt.title("Linear Regression Fit")
+plt.show()
+
+#Inferência usando os valores otimizados de θ (h_θ(x) = θ^T x)
+def predict(x, theta):
+    y_pred = np.dot(theta.transpose(), x)
+    return y_pred
+y_pred_1 = predict(np.array([1,4]), theta) * 10000
+print ("For a population of 40,000 people, the model predicts a profit of $" + str(round(y_pred_1, 0)))
+y_pred_2 = predict(np.array([1,8.3]), theta) * 10000
+print ("For a population of 40,000 people, the model predicts a profit of $" + str(round(y_pred_2, 1)))
