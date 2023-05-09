@@ -4,4 +4,4 @@
 
 2- Realizar uma regressão linear univariada com Numpy e Python.
 
-3 -Criar visualizações de dados e gráficos usando matplotlib.
+3- Criar visualizações de dados e gráficos usando matplotlib.
