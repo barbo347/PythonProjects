@@ -14,6 +14,15 @@ st.markdown(
 
 @st.cache_data
 def load_data(nrows):
+    """
+    Função para carregar os dados do conjunto de dados e fazer pré-processamento
+    
+    Parâmetros:
+    - nrows: número de linhas a serem carregadas
+    
+    Retorna:
+    - data: DataFrame contendo os dados carregados
+    """
     data = pd.read_csv(
         DATA_URL, nrows=nrows, parse_dates=[["CRASH_DATE", "CRASH_TIME"]]
     )
@@ -33,7 +42,7 @@ data = load_data(100000)
 original_data = data
 
 st.header("Where are the most people injured in NYC?")
-injured_people = st.slider("Number of persons injured in vehicle collisions", 0, 19)
+injured_people = st.slider("Number of persons injured in vehicle collisions", 0, 19) # Slider para selecionar o número de pessoas feridas em colisões de veículos
 st.map(
     data.query("`number of persons injured` >= @injured_people")[
         ["latitude", "longitude"]
@@ -42,12 +51,13 @@ st.map(
 
 
 st.header("How many collisions occur during a given time of day?")
-hour = st.slider("Hour to look at", 0, 23)
-data = data[data["date/time"].dt.hour == hour]
+hour = st.slider("Hour to look at", 0, 23) # Slider para selecionar uma hora específica do dia
+data = data[data["date/time"].dt.hour == hour] # Filtra os dados com base na hora selecionada
 
-st.markdown("Vehicle collisions between %i:00 and %i:00" % (hour, (hour + 1) % 24))
-midpoint = (np.average(data["latitude"]), np.average(data["longitude"]))
+st.markdown("Vehicle collisions between %i:00 and %i:00" % (hour, (hour + 1) % 24)) # Exibe a quantidade de colisões durante o intervalo de uma hora
+midpoint = (np.average(data["latitude"]), np.average(data["longitude"])) # Calcula a latitude e longitude média para centralizar o mapa
 
+# Cria uma visualização em mapa usando a biblioteca pydeck
 st.write(
     pdk.Deck(
         map_style="mapbox://styles/mapbox/light-v9",
@@ -74,19 +84,19 @@ st.write(
 
 st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
 filtered = data[
-    (data["date/time"].dt.hour >= hour) & (data["date/time"].dt.hour < (hour + 1))
+    (data["date/time"].dt.hour >= hour) & (data["date/time"].dt.hour < (hour + 1)) # Filtra os dados com base no intervalo de uma hora
 ]
 
-hist = np.histogram(filtered["date/time"].dt.minute, bins=60, range=(0, 60))[0]
+hist = np.histogram(filtered["date/time"].dt.minute, bins=60, range=(0, 60))[0] # Histograma da distribuição de colisões por minuto
 chart_data = pd.DataFrame({"minute": range(60), "crashes": hist})
 fig = px.bar(
-    chart_data, x="minute", y="crashes", hover_data=["minute", "crashes"], height=400
+    chart_data, x="minute", y="crashes", hover_data=["minute", "crashes"], height=400 # Gráfico de barras para visualizar as colisões por minuto
 )
 st.write(fig)
 
 st.header("Top 5 dangerous streets by affected type")
 select = st.selectbox(
-    "Affected type of people", ["Pedestrians", "Cyclists", "Motorists"]
+    "Affected type of people", ["Pedestrians", "Cyclists", "Motorists"] # Selectbox para selecionar o tipo de afetados (Pedestrians, Cyclists ou Motorists)
 )
 
 if select == "Pedestrians":
@@ -116,7 +126,7 @@ else:
         .dropna(how="any")[:5]
     )
 
-
-if st.checkbox("Show Raw Data", False):
+# Checkbox para exibir os dados brutos
+if st.checkbox("Show Raw Data", False): 
     st.subheader("Raw Data")
     st.write(data)
