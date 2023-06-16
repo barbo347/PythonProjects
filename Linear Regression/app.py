@@ -7,9 +7,9 @@ import seaborn as sns
 plt.rcParams['figure.figsize'] = (12, 8)
 
 #Visualização dos dados e propriedades
-data = pd.read_csv('dados.txt')
-data.head()
-data.info()
+data = pd.read_csv('dados.txt') # Carrega os dados do arquivo 'dados.txt'
+data.head() # Exibe as primeiras linhas do conjunto de dados
+data.info() # Exibe informações sobre o conjunto de dados
 
 #Plotando os dados livremente
 ax = sns.scatterplot(x="Population", y="Profit", data=data)
@@ -39,9 +39,9 @@ def gradient_descent(X, y, theta, alpha, iterations):
         theta -= alpha * 1/m * error
         costs.append(cost_function(X, y, theta))
     return theta, costs
-theta, costs = gradient_descent(X, y, theta, alpha=0.01, iterations=2000)
+theta, costs = gradient_descent(X, y, theta, alpha=0.01, iterations=2000) # Executa o método do gradiente
 print("h(x) = {} + {}x1".format(str(round(theta[0, 0], 2)),
-                                str(round(theta[1, 0], 2))))
+                                str(round(theta[1, 0], 2)))) # Exibe os valores otimizados de theta
 
 #Plotando a Função de Perda J(θ)
 theta_0 = np.linspace(-10, 10, 100)
