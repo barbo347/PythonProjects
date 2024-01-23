@@ -4,7 +4,7 @@ import seaborn as sns  # data visualization library
 import matplotlib.pyplot as plt
 import time
 
-data = pd.read_csv('data/data.csv')
+data = pd.read_csv('data.csv')
 
 #2: Separate Target from Features
 
@@ -15,6 +15,15 @@ y = data.diagnosis
 drop_cols = ['Unnamed: 32', 'id', 'diagnosis']
 x = data.drop(drop_cols, axis = 1)
 x.head()
+
+#3: Plot Diagnosis Distribution
+
+ax = sns.countplot(y, label='Count')
+B, M = y.value_counts()
+print('Number of Benign Tumors:', B)
+print('Number of Maliign Tumors:', M)
+
+x.describe()
 
 #3: Plot Diagnosis Distribution
 
@@ -66,3 +75,4 @@ plt.xticks(rotation=45)
 
 f, ax = plt.subplots(figsize=(18,18))
 sns.heatmap(x.corr(), annot=True, linewidth=.5, fmt='.1f', ax=ax);
+
