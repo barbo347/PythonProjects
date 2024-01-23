@@ -36,22 +36,37 @@ Distribuição das classes: 357 benignos, 212 malignos
 
 O código fornecido realiza as seguintes funcionalidades:
 
-1. Importação de bibliotecas: Importa as bibliotecas necessárias, como o NumPy para álgebra linear e o Pandas para manipulação de dados.
+- Certifique-se de ter as seguintes bibliotecas Python instaladas:
 
-2. Carregamento do conjunto de dados: Carrega o conjunto de dados a partir de um arquivo CSV usando o Pandas e armazena-o em um dataframe chamado `data`.
+- NumPy
+- Pandas
+- Nascido no mar
+- Matplotlib
 
-3. Separação do alvo e das características: Separa a variável alvo, que contém o diagnóstico (benigno ou maligno), da matriz de características. Descarta as colunas indesejadas, como 'Unnamed: 32', 'id' e 'diagnosis', para formar um novo dataframe chamado `x`. A variável alvo é armazenada em uma série chamada `y`.
+- Carregamento do conjunto de dados: Carrega o conjunto de dados a partir de um arquivo CSV usando o Pandas e armazena-o em um dataframe chamado `data`.
 
-4. Plotagem da distribuição dos diagnósticos: Cria um gráfico de contagem para visualizar a distribuição dos diagnósticos benignos e malignos. O eixo x representa os diagnósticos, e o eixo y mostra a contagem de cada diagnóstico.
+- Separação do alvo e das características: Separa a variável alvo, que contém o diagnóstico (benigno ou maligno), da matriz de características. Descarta as colunas indesejadas, como 'Unnamed: 32', 'id' e 'diagnosis', para formar um novo dataframe chamado `x`. A variável alvo é armazenada em uma série chamada `y`.
 
-5. Análise descritiva das características: Exibe estatísticas descritivas das características, como média, desvio padrão, mínimo, máximo e quartis. Isso fornece uma visão geral das propriedades das características do conjunto de dados.
+- Plotagem da distribuição dos diagnósticos: Cria um gráfico de contagem para visualizar a distribuição dos diagnósticos benignos e malignos. O eixo x representa os diagnósticos, e o eixo y mostra a contagem de cada diagnóstico.
 
-6. Visualização dos dados padronizados: Padroniza os dados para ter média zero e desvio padrão um, a fim de colocar todas as características na mesma escala. Em seguida, cria gráficos de violino e boxplot para visualizar a distribuição dos valores padronizados das características, separados pelos diagnósticos benignos e malignos.
+![Diagnosis Distribution](images/diagnosis_distribution.png)
 
-7. Comparação de características através de gráficos de dispersão conjunta: Gera um gráfico de dispersão conjunta (joint plot) para comparar duas características do conjunto de dados. Neste caso, as características "concavity_worst" e "concave points_worst" são comparadas, e é adicionada uma linha de regressão para analisar a relação entre elas.
+. Visualização dos dados padronizados: Padroniza os dados para ter média zero e desvio padrão um, a fim de colocar todas as características na mesma escala. Em seguida, cria gráficos de violino e boxplot para visualizar a distribuição dos valores padronizados das características, separados pelos diagnósticos benignos e malignos.
 
-8. Observação da distribuição e variância dos valores com gráficos de enxame: Cria gráficos de enxame (swarm plots) para visualizar a distribuição e variância dos valores padronizados das características. Cada ponto no gráfico representa um valor, e os pontos são agrupados por diagnóstico e por características.
+![Violin Plot](images/violin_plot.png)
+
+![box Plot](images/box_plot.png)
+
+. Comparação de características através de gráficos de dispersão conjunta: Gera um gráfico de dispersão conjunta (joint plot) para comparar duas características do conjunto de dados. Neste caso, as características "concavity_worst" e "concave points_worst" são comparadas, e é adicionada uma linha de regressão para analisar a relação entre elas.
+
+![Joint Plot](images/joint_plot.png)
+
+. Observação da distribuição e variância dos valores com gráficos de enxame: Cria gráficos de enxame (swarm plots) para visualizar a distribuição e variância dos valores padronizados das características. Cada ponto no gráfico representa um valor, e os pontos são agrupados por diagnóstico e por características.
+
+![Swarm Plot](images/swarm_plot.png)
 
 9. Visualização das correlações entre todas as características: Gera um mapa de calor (heatmap) para mostrar as correlações entre todas as características do conjunto de dados. Os valores das correlações são exibidos nos quadrados do mapa de calor, proporcionando insights sobre as relações entre as características.
+
+![Heatmap](images/correlation_heatmap.png)
 
 Essas funcionalidades fornecem uma análise exploratória inicial do conjunto de dados de diagnóstico de câncer de mama, permitindo visualizar a distribuição dos diagnósticos, as características e suas relações. Isso pode ajudar na compreensão dos dados e no desenvolvimento de modelos de classificação mais precisos.
