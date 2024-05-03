@@ -40,7 +40,7 @@ O código fornecido realiza as seguintes funcionalidades:
 
 - NumPy
 - Pandas
-- Nascido no mar
+- Seaborn
 - Matplotlib
 
 - Carregamento do conjunto de dados: Carrega o conjunto de dados a partir de um arquivo CSV usando o Pandas e armazena-o em um dataframe chamado `data`.
